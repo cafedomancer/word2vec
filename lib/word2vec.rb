@@ -1,5 +1,6 @@
 require "word2vec/version"
 
-module Word2Vec
-  # Your code goes here...
-end
+require "word2vec/io"
+require "word2vec/word_vectors"
+require "word2vec/word_clusters"
+require "word2vec/scripts_interface"
