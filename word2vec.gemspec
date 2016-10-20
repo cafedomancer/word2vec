@@ -9,8 +9,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["cafedomancer"]
   spec.email         = ["cafedomancer@gmail.com"]
 
-  spec.summary       = %q{Write a short summary, because Rubygems requires one.}
-  spec.description   = %q{Write a longer description or delete this line.}
+  spec.summary       = %q{A simple wrapper for word2vec.}
+  spec.description   = %q{A simple wrapper for word2vec.}
   spec.homepage      = "https://github.com/cafedomancer/word2vec"
   spec.license       = "MIT"
 
