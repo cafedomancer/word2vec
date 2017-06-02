@@ -64,4 +64,60 @@ RSpec.describe Word2Vec do
       end
     end
   end
+
+  describe '.load' do
+    context "kind: 'auto'" do
+      context 'known extention' do
+        it 'loads vectors from a vectors file' do
+          model = Word2Vec.load(output_bin)
+          vocab = model.vocab
+          vectors = model.vectors
+
+          expect(vectors.size).to eq(vocab.size)
+          expect(vectors.size).to be > 3000
+          expect(vectors.first.size).to eq(10)
+        end
+      end
+
+      context 'unknown extention' do
+        it 'raises a runtime error' do
+          expect { Word2Vec.load('vectors.unknown') }.to raise_error('Could not identify kind')
+        end
+      end
+    end
+
+    context "kind: 'bin'" do
+      it 'loads vectors from a binary vectors file' do
+        model = Word2Vec.load(output_bin, kind: 'bin')
+        vocab = model.vocab
+        vectors = model.vectors
+
+        expect(vectors.size).to eq(vocab.size)
+        expect(vectors.size).to be > 3000
+        expect(vectors.first.size).to eq(10)
+      end
+    end
+
+    context "kind: 'txt'" do
+      it 'loads vectors from a text vectors file' do
+        model = Word2Vec.load(output_txt, kind: 'txt')
+        vocab = model.vocab
+        vectors = model.vectors
+
+        expect(vectors.size).to eq(vocab.size)
+        expect(vectors.size).to be > 3000
+        expect(vectors.first.size).to eq(10)
+      end
+    end
+
+    context "kind: 'mmap'" do
+      it 'loads vectors from a memory mapped file'
+    end
+
+    context "kind: 'unknown'" do
+      it 'raises an argument error' do
+        expect { Word2Vec.load('vectors.unknown', kind: 'unknown') }.to raise_error(ArgumentError, 'Unknown kind')
+      end
+    end
+  end
 end
