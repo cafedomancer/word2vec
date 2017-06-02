@@ -65,7 +65,7 @@ module Word2Vec
     command.unshift(ext_path.join(command.shift).to_s)
 
     output, = Open3.capture2e(command.join(' '))
-    print output if verbose
+    puts output if verbose
 
     # TODO: raise an exception if the output contains error messages
   end
