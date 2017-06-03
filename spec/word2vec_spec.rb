@@ -69,13 +69,7 @@ RSpec.describe Word2Vec do
     context "kind: 'auto'" do
       context 'known extention' do
         it 'loads vectors from a vectors file' do
-          model = Word2Vec.load(output_bin)
-          vocab = model.vocab
-          vectors = model.vectors
-
-          expect(vectors.size).to eq(vocab.size)
-          expect(vectors.size).to be > 3000
-          expect(vectors.first.size).to eq(10)
+          expect(Word2Vec.load(output_bin)).to be_instance_of(Word2Vec::WordVectors)
         end
       end
 
@@ -88,25 +82,13 @@ RSpec.describe Word2Vec do
 
     context "kind: 'bin'" do
       it 'loads vectors from a binary vectors file' do
-        model = Word2Vec.load(output_bin, kind: 'bin')
-        vocab = model.vocab
-        vectors = model.vectors
-
-        expect(vectors.size).to eq(vocab.size)
-        expect(vectors.size).to be > 3000
-        expect(vectors.first.size).to eq(10)
+        expect(Word2Vec.load(output_bin, kind: 'bin')).to be_instance_of(Word2Vec::WordVectors)
       end
     end
 
     context "kind: 'txt'" do
       it 'loads vectors from a text vectors file' do
-        model = Word2Vec.load(output_txt, kind: 'txt')
-        vocab = model.vocab
-        vectors = model.vectors
-
-        expect(vectors.size).to eq(vocab.size)
-        expect(vectors.size).to be > 3000
-        expect(vectors.first.size).to eq(10)
+        expect(Word2Vec.load(output_txt, kind: 'txt')).to be_instance_of(Word2Vec::WordVectors)
       end
     end
 
